@@ -1,0 +1,38 @@
+# 内存监控相关配置
+memorythreshold: 80  # 当内存使用超过80%时触发警告
+
+# 忽略的进程列表
+processignorelist:
+  # 系统进程和常见进程，通常不需要终止
+  - "systemd"        # Linux 系统的初始化进程
+  - "bash"           # 当前用户的 shell 进程
+  - "sshd"           # SSH 服务进程
+  - "nginx"          # Web 服务器进程
+  - "apache2"        # Web 服务器进程
+  - "mysqld"         # MySQL 数据库服务进程
+  - "postgres"       # PostgreSQL 数据库服务进程
+  - "docker"         # Docker 容器管理进程
+  - "java"           # Java 进程（例如 Web 应用服务器等）
+  - "firefox"        # Firefox 浏览器进程
+  - "chrome"         # Google Chrome 浏览器进程
+  - "explorer"       # Windows 资源管理器进程
+  - "vpn"            # VPN 服务进程
+  - "slack"          # Slack 聊天应用进程
+  - "teams"          # Microsoft Teams 聊天应用进程
+  - "discord"        # Discord 聊天应用进程
+  - "java"           # Java 应用进程（可能是 Web 应用，后台服务等）
+  - "gpg-agent"      # GPG agent 进程，管理加密密钥
+  - "WeChat"         # 微信客户端进程
+  - "clash"          # Clash 网络代理进程
+  - "redis-server"   # Redis 数据库服务进程
+
+# 通知相关配置
+notification:
+  enabled: true            # 启用通知功能
+  method: "desktop"        # 支持的通知方式：email 或 desktop
+  email:
+    recipient: "example@example.com"  # 邮件接收者
+    smtp_server: "smtp.163.com"       # 邮件服务器
+  desktop:
+    enabled: true          # 是否启用桌面通知
+    timeout: 5             # 桌面通知显示时间，单位：秒
