@@ -53,13 +53,12 @@ func checkMemoryUsage() {
 		utils.LogMemoryWarning(v.UsedPercent)
 
 		// 清理不必要的进程
-		killUnnecessaryProcesses()
+		KillUnnecessaryProcesses()
 	}
 }
 
-// killUnnecessaryProcesses 查找并杀死占用内存最多的用户进程
-// killUnnecessaryProcesses 查找并杀死占用内存最多的用户进程
-func killUnnecessaryProcesses() {
+// KillUnnecessaryProcesses  查找并杀死占用内存最多的用户进程
+func KillUnnecessaryProcesses() {
 	// 获取配置中的忽略进程列表
 	ignoreList := append(config.GetConfig().ProcessIgnoreList, "explorer.exe", "dwm.exe", "taskmgr.exe", "winlogon.exe")
 

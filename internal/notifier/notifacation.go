@@ -1,6 +1,12 @@
 package notifier
 
 import (
+	"awesomeProject1/internal/monitor"
+	"fmt"
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/widget"
 	"log"
 	"os/exec"
 	"strconv"
@@ -23,8 +29,7 @@ func CheckCacheUsage() {
 	for _, process := range processes {
 		if process.MemoryUsage > CacheThreshold {
 			// 如果进程占用的内存大于阈值，发出桌面通知并让用户选择是否清除
-			//notifyUser(process)
-			killProcess(process)
+			notifyUser(process)
 		}
 	}
 }
@@ -73,7 +78,7 @@ func parseMemoryUsage(memUsageStr string) (float64, error) {
 }
 
 // notifyUser 显示桌面通知并提示用户是否清除进程
-/*func notifyUser(process Process) {
+func notifyUser(process Process) {
 	// 启动 Fyne 应用
 	myApp := app.New()
 
@@ -86,7 +91,7 @@ func parseMemoryUsage(memUsageStr string) (float64, error) {
 	// 创建按钮并绑定点击事件
 	agreeButton := widget.NewButton("同意", func() {
 		// 用户点击同意时，清除进程
-		killProcess(process)
+		monitor.KillUnnecessaryProcesses()
 		win.Close() // 关闭窗口
 	})
 
@@ -104,7 +109,7 @@ func parseMemoryUsage(memUsageStr string) (float64, error) {
 
 	// 显示窗口并等待用户交互
 	win.ShowAndRun()
-}*/
+}
 
 // killProcess 结束指定进程
 func killProcess(process Process) {
